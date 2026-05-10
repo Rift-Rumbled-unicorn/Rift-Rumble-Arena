@@ -14,7 +14,10 @@ const app = express();
 
 // ✅ Middleware
 app.use(cors({
-  origin: "https://rift-rumble-arena-joy3sui1z-rift-rumbled-unicorns-projects.vercel.app"
+  origin: [
+    "https://rift-rumble-arena.vercel.app",
+    /\.vercel\.app$/
+  ]
 }));
 app.use(express.json());
 
