@@ -1,10 +1,14 @@
 import express from "express";
 import cors from "cors";
 
+import dotenv from "dotenv";
+
 import battleRoutes from "./routes/battleRoutes.js";
 import mongoose from "mongoose";
 
 import historyRoutes from "./routes/historyRoutes.js";
+
+dotenv.config();
 
 const app = express();
 
@@ -21,10 +25,10 @@ app.get("/health", (req, res) => {
 app.use("/battle", battleRoutes);
 app.use("/history", historyRoutes);
 
-const PORT = 4000;
+const PORT = process.env.PORT  || 4000;
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/riftRumbleArena")
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("✅ MongoDB connected");
     app.listen(PORT, () => {
