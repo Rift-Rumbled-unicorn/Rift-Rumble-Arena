@@ -1,5 +1,4 @@
-const BASE_URL = "http://localhost:4000";
-
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 // ✅ Start a new battle
 export async function startBattle({ pokemonAId, pokemonBId }) {
   const res = await fetch(`${BASE_URL}/battle/start`, {
